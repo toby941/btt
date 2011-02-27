@@ -1,0 +1,2 @@
+serviceClass: com.toby.btt.client.GreetingService
+path: 01AD9C1E84BEF0FE1B030C2B3765EF03.gwt.rpc
