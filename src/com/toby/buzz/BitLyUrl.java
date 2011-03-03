@@ -41,6 +41,6 @@ public class BitLyUrl {
 		System.getProperties().put("http.proxyPassword", "tobytoby5");
 		BitLyUrl bitLyUrl = new BitLyUrl();
 		String url = "http://code.google.com/p/bitly-api/wiki/ApiDocumentation#/v3/expand";
-		System.out.println(bitLyUrl.makeShortUrl(url));
+		System.out.println(BitLyUrl.makeShortUrl(url));
 	}
 }

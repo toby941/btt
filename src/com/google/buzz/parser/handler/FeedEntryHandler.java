@@ -94,6 +94,7 @@ public class FeedEntryHandler extends BaseHandler {
 	/**
 	 * Method to be called every time an xml element starts
 	 */
+	@Override
 	public void startElement(String uri, String name, String qName, Attributes attributes)
 	        throws SAXException {
 		if (TITLE.equals(name)) {
@@ -142,6 +143,7 @@ public class FeedEntryHandler extends BaseHandler {
 	/**
 	 * Method to be called every time an xml element ends
 	 */
+	@Override
 	public void endElement(String uri, String name, String qName) throws SAXException {
 		if (TITLE.equals(name)) {
 			insideTitle = false;
@@ -180,6 +182,7 @@ public class FeedEntryHandler extends BaseHandler {
 	/**
 	 * Method to be called between the beginning and the end of the xml elements.
 	 */
+	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		String content = (new String(ch).substring(start, start + length));
 		if (insideCrosspostSource && insideId) {

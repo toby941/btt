@@ -80,6 +80,7 @@ public class FeedHandler extends BaseHandler {
 	/**
 	 * Method to be called every time an xml element starts
 	 */
+	@Override
 	public void startElement(String uri, String name, String qName, Attributes attributes)
 	        throws SAXException {
 		if (LINK.equals(name)) {
@@ -112,6 +113,7 @@ public class FeedHandler extends BaseHandler {
 	/**
 	 * Method to be called every time an xml element ends
 	 */
+	@Override
 	public void endElement(String uri, String name, String qName) throws SAXException {
 		if (LINK.equals(name)) {
 			feed.getLinks().add(linkHandler.getBuzzLink());
@@ -131,6 +133,7 @@ public class FeedHandler extends BaseHandler {
 	/**
 	 * Method to be called between the beginning and the end of the xml elements.
 	 */
+	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		String content = (new String(ch).substring(start, start + length));
 		if (insideTitle) {

@@ -52,6 +52,7 @@ public class BuzzContent {
 	 * 
 	 * @return the string representation of the object
 	 */
+	@Override
 	public String toString() {
 		return toString("\n");
 	}

@@ -43,6 +43,7 @@ public class ContentHandler extends BaseHandler {
 	/**
 	 * Method to be called every time an xml element starts
 	 */
+	@Override
 	public void startElement(String uri, String name, String qName, Attributes attributes)
 	        throws SAXException {
 		String type = attributes.getValue(TYPE);
@@ -53,6 +54,7 @@ public class ContentHandler extends BaseHandler {
 	/**
 	 * Method to be called every time an xml element ends
 	 */
+	@Override
 	public void endElement(String uri, String name, String qName) throws SAXException {
 		if (CONTENT.equals(name)) {
 			stopHandlingEvents();
@@ -63,6 +65,7 @@ public class ContentHandler extends BaseHandler {
 	/**
 	 * Method to be called between the beginning and the end of the xml elements.
 	 */
+	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		System.out.println(new String(ch));
 		content.setText((new String(ch).substring(start, start + length)));
