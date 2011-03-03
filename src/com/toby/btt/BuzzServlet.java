@@ -1,8 +1,10 @@
 package com.toby.btt;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
+import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,18 +24,20 @@ public class BuzzServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		super.doGet(req, resp);
 
-		Query query = PMF.get().getPersistenceManager().newQuery(
-				BuzzFeedEntryStorge.class);
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query query = pm.newQuery(BuzzFeedEntryStorge.class);
 		query.setOrdering("postDate desc");
 		List<BuzzFeedEntryStorge> results = (List<BuzzFeedEntryStorge>) query
 				.execute();
-		if (results.size() > 0) {
-			req.setAttribute("list", results);
-		}
-		getServletConfig().getServletContext().getRequestDispatcher(
-				"/JSP/buzz.jsp").forward(req, resp);
+		System.out.println(results.size());
+		BuzzFeedEntryStorge entryStorge = new BuzzFeedEntryStorge("toby941",
+				new Date(), "result size:" + results.size(), "www.toby941.com",
+				true);
+		pm.makePersistent(entryStorge);
+		pm.close();
+		resp.setContentType("text/plain");
+		resp.getWriter().println(results.size());
 	}
 
 	@Override

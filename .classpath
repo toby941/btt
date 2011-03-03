@@ -9,7 +9,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-jsr107cache-1.4.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/buzz-java-client-0.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-codec-1.4.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-appengine-1.0.8.final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-core-1.1.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-jpa-1.1.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/dom4j-1.6.1.jar"/>
