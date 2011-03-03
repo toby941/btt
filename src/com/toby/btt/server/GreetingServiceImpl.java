@@ -7,7 +7,6 @@ import org.apache.commons.logging.LogFactory;
 
 import winterwell.jtwitter.OAuthSignpostClient;
 import winterwell.jtwitter.Twitter;
-import winterwell.jtwitter.Twitter.Status;
 
 import com.toby.btt.client.GreetingService;
 import com.toby.btt.shared.FieldVerifier;
@@ -47,7 +46,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		Twitter jtwit = new Twitter("toby941", oauthClient);
 		// Status s= jtwit.setStatus("test from"+serverInfo+ "Time: "+new
 		// Date());
-		log.error("now Date" + new Date());
+		log.error(" Date" + new Date());
 		return "haha Hello, " + input + "!<br><br>I am running " + serverInfo
 				+ ".<br><br>It looks like you are using:<br>" + userAgent;
 	}
