@@ -190,12 +190,10 @@ public class MyBuzz {
 		request.setRequestProperty("Accept-Charset", "GBK");
 		request.setRequestProperty("Content-type", "text/plain; charset=GBK");
 		request.setRequestProperty("contentType", "GBK");
-		System.out.println(request.getConnectTimeout());
 		String xmlResponse = BuzzIO.send(request);
-		System.out.println(xmlResponse);
 		// return BuzzFeedParser.parseFeed(xmlResponse);
 		return BuzzFeedParser
-				.parseFeedEntityWithDom4jOnlyContentAndContent(xmlResponse);
+				.parseFeedEntityWithDom4jOnlyTitleAndSourceURL(xmlResponse);
 	}
 
 	/**

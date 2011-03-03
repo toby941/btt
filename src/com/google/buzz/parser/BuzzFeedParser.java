@@ -27,7 +27,8 @@ import com.google.buzz.parser.handler.FeedHandler;
  * @author roberto.estivill
  */
 public class BuzzFeedParser {
-	public static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+	public static SimpleDateFormat format = new SimpleDateFormat(
+			"yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
 
 	/**
 	 * Parse an xml string into a BuzzFeed model object.
@@ -40,8 +41,8 @@ public class BuzzFeedParser {
 	 * @throws BuzzParsingException
 	 *             if a parsing error occurs.
 	 */
-	public static BuzzFeed parseFeed(String xmlResponse) throws BuzzParsingException,
-	        BuzzIOException {
+	public static BuzzFeed parseFeed(String xmlResponse)
+			throws BuzzParsingException, BuzzIOException {
 		FeedHandler handler;
 		XMLReader xr;
 		try {
@@ -49,7 +50,8 @@ public class BuzzFeedParser {
 			handler = new FeedHandler(xr);
 			xr.setContentHandler(handler);
 			xr.setErrorHandler(handler);
-			xr.parse(new InputSource(new ByteArrayInputStream(xmlResponse.getBytes("UTF-8"))));
+			xr.parse(new InputSource(new ByteArrayInputStream(xmlResponse
+					.getBytes("UTF-8"))));
 		} catch (SAXException e) {
 			throw new BuzzParsingException(e);
 		} catch (IOException e) {
@@ -58,10 +60,18 @@ public class BuzzFeedParser {
 		return handler.getFeed();
 	}
 
-	public static BuzzFeed parseFeedEntityWithDom4jOnlyContentAndContent(String xmlResponse)
-	        throws Exception {
+	/**
+	 * è·å–æ¯æ¡entityçš„title (100å­—ç¬¦é•¿åº¦)ï¼ŒsourceURLé‡‡ç”¨bit.lyç¼©çŸ­åè¾“å‡º
+	 * 
+	 * @param xmlResponse
+	 * @return
+	 * @throws Exception
+	 */
+	public static BuzzFeed parseFeedEntityWithDom4jOnlyTitleAndSourceURL(
+			String xmlResponse) throws Exception {
 		SAXReader reader = new SAXReader();
-		Document document = reader.read(new ByteArrayInputStream(xmlResponse.getBytes("UTF-8")));
+		Document document = reader.read(new ByteArrayInputStream(xmlResponse
+				.getBytes("UTF-8")));
 		Element rootElement = document.getRootElement();
 		Iterator<?> entryElements = rootElement.elementIterator("entry");
 		BuzzFeed bf = new BuzzFeed();
@@ -75,13 +85,4 @@ public class BuzzFeedParser {
 		return bf;
 	}
 
-	public static void main(String[] args) {
-		String s = "¶Ôjava ÏÂ½âÎöxml»ğ´óµÄÍ¬Ñ§¿ÉÒÔÊÔÊÔÕâ¸ö<br /><a href=\"http://www.xom.nu/\" >http://www.xom.nu/</a>";
-		System.err.println(s.replaceAll("<br />", " ").replaceAll("\\<.*?>", ""));
-		System.err.println(s.replaceAll("\\<.*?>", ""));
-		String s1 = "ÖÜÄ©µ¹ÌÚÁË2ÌìµÄbtt(buzz to twitter)Ğ¡ÓĞ½øÕ¹,Ó¦ÓÃÒÑ¾­ÔÚGAEÉÏÅÜÆğÀ´ÁË http://buzztot.appspot.com/ buzzµÄ»ñÈ¡£¬Í¨¹ıapi¸üĞÂtwitter";
-		String s2 = "ÖĞ¹úÈËµÄÈ¨Á¦¿¿ÖĞ¹úÈË×Ô¼ºÈ¥ÕùÈ¡£¬²»ÒªÃÎÏë×¨ÖÆÕşÈ¨»áÖ÷¶¯ÉÍ´ÍÄãÕâÖÖÈ¨Á¦¡£Çë¼ÓÈëÎÒÃÇ£¬ÓÃ·Ç±©Á¦²»ºÏ×÷£¬ÈÃÖĞ¹úÕş¸®×ğÖØÖĞ¹úÈËÃñµÄ»ù±¾È¨Á¦¡£ Ê±¼ä£º2011Äê2ÔÂ20ÈÕ¿ªÊ¼ Ã¿ÖÜÈÕÏÂÎç2Ê±£¨Èç¹ûÖĞ¹úÕş¸®";
-		System.out.println(s1.length());
-		System.out.println(s2.length());
-	}
 }

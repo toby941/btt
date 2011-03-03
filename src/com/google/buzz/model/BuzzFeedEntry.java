@@ -284,6 +284,7 @@ public class BuzzFeedEntry {
 	 * 
 	 * @return the string representation of the object
 	 */
+	@Override
 	public String toString() {
 		return toString("\n");
 	}
@@ -307,9 +308,13 @@ public class BuzzFeedEntry {
 		sb.append(newIndent + "Content: " + content.toString(newIndent + "\t"));
 		sb.append(newIndent + "Activity Verb: " + activityVerb);
 		sb.append(newIndent + "Cross Post Source Id: " + crosspostSourceId);
-		sb.append(newIndent + "Source Activity Service Title: " + sourceActivityTitle);
-		sb.append(newIndent + "Buzz Activity: " + activity.toString(newIndent + "\t"));
-		sb.append(newIndent + "Buzz Reply: " + reply.toString(newIndent + "\t"));
+		sb.append(newIndent + "Source Activity Service Title: "
+				+ sourceActivityTitle);
+		sb.append(newIndent + "Buzz Activity: "
+				+ activity.toString(newIndent + "\t"));
+		sb
+				.append(newIndent + "Buzz Reply: "
+						+ reply.toString(newIndent + "\t"));
 		sb.append(newIndent + "Links: ");
 		for (int i = 0; i < links.size(); i++) {
 			sb.append(links.get(i).toString(newIndent + "\t"));
@@ -349,6 +354,17 @@ public class BuzzFeedEntry {
 		this.content = bc;
 		this.published = date;
 		this.sourceLink = linkUrl;
+	}
+
+	public static void main(String[] args) {
+		String s = "对java 下解析xml火大的同学可以试试这个<br /><a href=\"http://www.xom.nu/\" >http://www.xom.nu/</a>";
+		System.err.println(s.replaceAll("<br />", " ")
+				.replaceAll("\\<.*?>", ""));
+		System.err.println(s.replaceAll("\\<.*?>", ""));
+		String s1 = "周末倒腾了2天的btt(buzz to twitter)小有进展,应用已经在GAE上跑起来了 http://buzztot.appspot.com/ buzz的获取，通过api更新twitter";
+		String s2 = "中国人的权力靠中国人自己去争取，不要梦想专制政权会主动赏赐你这种权力。请加入我们，用非暴力不合作，让中国政府尊重中国人民的基本权力。 时间：2011年2月20日开始 每周日下午2时（如果中国政府";
+		System.out.println(s1.length());
+		System.out.println(s2.length());
 	}
 
 	public String getSourceLink() {
