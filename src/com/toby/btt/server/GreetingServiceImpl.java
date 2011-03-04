@@ -1,16 +1,14 @@
 package com.toby.btt.server;
 
 import java.util.Date;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Logger;
 
 import winterwell.jtwitter.OAuthSignpostClient;
 import winterwell.jtwitter.Twitter;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.toby.btt.client.GreetingService;
 import com.toby.btt.shared.FieldVerifier;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
  * The server side implementation of the RPC service.
@@ -18,7 +16,8 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
-	private Log log = LogFactory.getLog(GreetingServiceImpl.class);
+	private final Logger logger = Logger.getLogger(GreetingServiceImpl.class
+			.getName());
 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid.
@@ -46,7 +45,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		Twitter jtwit = new Twitter("toby941", oauthClient);
 		// Status s= jtwit.setStatus("test from"+serverInfo+ "Time: "+new
 		// Date());
-		log.error(" Date" + new Date());
+		logger.warning(" Date" + new Date());
 		return "haha Hello, " + input + "!<br><br>I am running " + serverInfo
 				+ ".<br><br>It looks like you are using:<br>" + userAgent;
 	}

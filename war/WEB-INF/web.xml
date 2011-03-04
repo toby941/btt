@@ -5,7 +5,7 @@
 
 <web-app>
 
-	<!-- Servlets -->
+	<!-- Servlets 
 	<servlet>
 		<servlet-name>greetServlet</servlet-name>
 		<servlet-class>com.toby.btt.server.GreetingServiceImpl</servlet-class>
@@ -15,7 +15,7 @@
 		<servlet-name>greetServlet</servlet-name>
 		<url-pattern>/btt/greet</url-pattern>
 	</servlet-mapping>
-
+-->
  	<servlet>
  	<servlet-name>buzzServlet</servlet-name>
  	<servlet-class>com.toby.btt.BuzzServlet</servlet-class>

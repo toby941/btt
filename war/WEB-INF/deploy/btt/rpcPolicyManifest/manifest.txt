@@ -1,2 +1,3 @@
 # Module btt
 # RPC service class, partial path of RPC policy file
+com.toby.btt.client.GreetingService, 01AD9C1E84BEF0FE1B030C2B3765EF03.gwt.rpc

@@ -28,15 +28,19 @@ public class BuzzServlet extends HttpServlet {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(BuzzFeedEntryStorge.class);
 		query.setOrdering("postDate desc");
+		resp.setContentType("text/plain");
 		List<BuzzFeedEntryStorge> results = (List<BuzzFeedEntryStorge>) query
 				.execute();
-		System.out.println(results.size());
+		if (results.size() > 0) {
+			for (BuzzFeedEntryStorge storge : results) {
+				resp.getWriter().println(storge.getBitlyUrl());
+			}
+		}
 		BuzzFeedEntryStorge entryStorge = new BuzzFeedEntryStorge("toby941",
 				new Date(), "result size:" + results.size(), "www.toby941.com",
 				true);
 		pm.makePersistent(entryStorge);
 		pm.close();
-		resp.setContentType("text/plain");
 		resp.getWriter().println(results.size());
 	}
 
