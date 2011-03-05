@@ -40,7 +40,6 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				"rdiMpbTlGOFDWBBnY8PIg",
 				"06gDhLk3NsIYYHgLR5pCnVM1Au9i6ql87aMlKOtH9k",
 				"16851131-gWQs0iv9pdLBS8mgx6NLd7dFEC6rm6HBtKX1MFAP4",
-				// 16851131-gWQs0iv9pdLBS8mgx6NLd7dFEC6rm6HBtKX1MFAP4
 				"3kn2tw2l5xL5UsGNC2Omikjn4fF12ODKs7JY2KxFOo");
 		Twitter jtwit = new Twitter("toby941", oauthClient);
 		// Status s= jtwit.setStatus("test from"+serverInfo+ "Time: "+new

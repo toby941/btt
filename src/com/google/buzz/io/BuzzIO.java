@@ -164,7 +164,6 @@ public class BuzzIO {
 		try {
 			// Send request
 			request.connect();
-
 			// Read response
 			InputStream is = request.getInputStream();
 			response = new StringBuffer();

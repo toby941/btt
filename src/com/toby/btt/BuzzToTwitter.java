@@ -3,6 +3,7 @@ package com.toby.btt;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
@@ -45,10 +46,22 @@ public class BuzzToTwitter extends HttpServlet {
 			List<BuzzUser> users = (List<BuzzUser>) query.execute();
 			if (users.size() > 0) {
 				for (BuzzUser buzzUser : users) {
-					String userId = buzzUser.getBuzzId();
-					MyBuzz buzz = new MyBuzz(userId);
-					BuzzFeed feed = buzz.getPosts(BuzzFeed.Type.PUBLIC);
-					if (feed.getEntries().isEmpty()) {
+					String userId = buzzUser.getBuzzId().trim();
+					MyBuzz buzz = null;
+					BuzzFeed feed = null;
+					int tryTimes = 8;
+					while (feed == null && tryTimes > 0) {
+						try {
+							buzz = new MyBuzz(userId);
+							feed = buzz.getPosts(BuzzFeed.Type.PUBLIC);
+						} catch (Exception e) {
+							tryTimes--;
+							buzz = null;
+							feed = null;
+						}
+					}
+
+					if (feed == null || feed.getEntries().isEmpty()) {
 						continue;
 					}
 					List<BuzzFeedEntryStorge> buzzFeedEntryStorges = BuzzClient
@@ -63,10 +76,20 @@ public class BuzzToTwitter extends HttpServlet {
 					Twitter jtwit = new Twitter(buzzUser.getTwitterId(),
 							oauthClient);
 					for (BuzzFeedEntry entry : feed.getEntries()) {
+						boolean isSynced = true;
 						if (entry.getPublished().after(lastSyncTime)) {
-							jtwit.setStatus(entry.getTitle() + " source: "
-									+ entry.getSourceLink());
+							try {
+								jtwit.setStatus(entry.getTitle() + " source: "
+										+ entry.getSourceLink());
+							} catch (Exception e) {
+								isSynced = false;
+								e.printStackTrace();
+								logger.log(Level.SEVERE, "send twitter error",
+										e);
+							}
 						}
+						BuzzClient.saveBuzzFeedEntryStorge(entry, isSynced,
+								userId);
 					}
 				}
 			}

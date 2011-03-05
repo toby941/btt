@@ -17,9 +17,9 @@ import com.toby.btt.storge.PMF;
 
 public class BuzzClient {
 	public static void main(String[] args) throws Exception {
-		MyBuzz buzz = new MyBuzz();
+		MyBuzz buzz = new MyBuzz("toby941");
 		// buzz.setAccessToken("AIzaSyBWF-5cKKJ_MZIdYg1CC5EnBBpePoPk5G8");
-		BuzzFeed feed = buzz.getPosts("toby941", BuzzFeed.Type.PUBLIC);
+		BuzzFeed feed = buzz.getPosts(BuzzFeed.Type.PUBLIC);
 		// BuzzFeed feed = buzz.getPosts("firemica", BuzzFeed.Type.PUBLIC);
 
 		if (!feed.getEntries().isEmpty()) {
@@ -47,9 +47,10 @@ public class BuzzClient {
 		return entryStorges;
 	}
 
-	public void saveBuzzFeedEntryStorge(BuzzFeedEntry entry, boolean isSynced) {
-		BuzzFeedEntryStorge storge = new BuzzFeedEntryStorge(entry.getId(),
-				entry.getPublished(), entry.getTitle(), entry.getSourceLink(),
+	public static void saveBuzzFeedEntryStorge(BuzzFeedEntry entry,
+			boolean isSynced, String userId) {
+		BuzzFeedEntryStorge storge = new BuzzFeedEntryStorge(userId, entry
+				.getPublished(), entry.getTitle(), entry.getSourceLink(),
 				isSynced);
 		PMF.get().getPersistenceManager().makePersistent(storge);
 	}
