@@ -55,10 +55,28 @@ public class MyBuzz {
 	private final BuzzOAuth buzzOAuth;
 
 	/**
+	 * buzz user id
+	 */
+	private String buzzUserId;
+
+	public String getBuzzUserId() {
+		return buzzUserId;
+	}
+
+	public void setBuzzUserId(String buzzUserId) {
+		this.buzzUserId = buzzUserId;
+	}
+
+	/**
 	 * Default Constructor method.
 	 */
 	public MyBuzz() {
 		buzzOAuth = new BuzzOAuth();
+	}
+
+	public MyBuzz(String buzzId) {
+		buzzOAuth = new BuzzOAuth();
+		buzzUserId = buzzId;
 	}
 
 	/**
@@ -139,6 +157,17 @@ public class MyBuzz {
 			return getPostsWithoutAuthentication(userId, feedType);
 		}
 		return getPostsWithAuthentication(userId, feedType);
+	}
+
+	/**
+	 * get post throw buzzUserId
+	 * 
+	 * @param feedType
+	 * @return
+	 * @throws Exception
+	 */
+	public BuzzFeed getPosts(BuzzFeed.Type feedType) throws Exception {
+		return getPosts(buzzUserId, feedType);
 	}
 
 	/**

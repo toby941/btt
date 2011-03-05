@@ -1,33 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app
-    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
 
-<web-app>
-
-	<!-- Servlets 
-	<servlet>
-		<servlet-name>greetServlet</servlet-name>
+	<!--
+		Servlets <servlet> <servlet-name>greetServlet</servlet-name>
 		<servlet-class>com.toby.btt.server.GreetingServiceImpl</servlet-class>
+		</servlet> <servlet-mapping> <servlet-name>greetServlet</servlet-name>
+		<url-pattern>/btt/greet</url-pattern> </servlet-mapping>
+	-->
+	<servlet>
+		<servlet-name>buzzServlet</servlet-name>
+		<servlet-class>com.toby.btt.BuzzServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
-		<servlet-name>greetServlet</servlet-name>
-		<url-pattern>/btt/greet</url-pattern>
-	</servlet-mapping>
--->
- 	<servlet>
- 	<servlet-name>buzzServlet</servlet-name>
- 	<servlet-class>com.toby.btt.BuzzServlet</servlet-class>
- 	</servlet>
-	<servlet-mapping>
-	<servlet-name>buzzServlet</servlet-name>
-	<url-pattern>/buzz</url-pattern>
+		<servlet-name>buzzServlet</servlet-name>
+		<url-pattern>/buzz</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>buzzToTwitter</servlet-name>
+		<servlet-class>com.toby.btt.BuzzToTwitter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>buzzToTwitter</servlet-name>
+		<url-pattern>/buzztotwitter</url-pattern>
+	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 	<!-- Default page to serve -->
 	<welcome-file-list>
-		<welcome-file>Btt.html</welcome-file>
+		<welcome-file>buzz</welcome-file>
 	</welcome-file-list>
 
 </web-app>
