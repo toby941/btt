@@ -49,5 +49,6 @@ existing user:
 <p>accessToken<input type="text" name="accessToken" /></p>
 <p>accessTokenSecret<input type="text" name="accessTokenSecret" /></p>
 <input type="submit" value="submit" /></form>
+<%@include file="/buzz/foot.jsp"%>
 </body>
 </html>

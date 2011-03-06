@@ -46,7 +46,7 @@
 	</security-constraint>
 	<!-- Default page to serve -->
 	<welcome-file-list>
-		<welcome-file>buzz</welcome-file>
+		<welcome-file>buzz/user_query.jsp</welcome-file>
 	</welcome-file-list>
 
 </web-app>

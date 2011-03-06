@@ -8,6 +8,6 @@
 <title>User delete</title>
 </head>
 <body>
-
+<%@include file="/buzz/foot.jsp"%>
 </body>
 </html>

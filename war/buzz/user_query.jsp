@@ -18,5 +18,6 @@ user query:
 user delete:
 <form action="/buzz/user_delete.jsp" method="post">
 </form>
+<%@include file="/buzz/foot.jsp"%>
 </body>
 </html>

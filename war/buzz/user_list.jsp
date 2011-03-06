@@ -37,7 +37,7 @@ List<BuzzFeedEntryStorge> entryStorges=new ArrayList<BuzzFeedEntryStorge>();
 </c:choose>
 
 
-
+<%@include file="/buzz/foot.jsp"%>
 
 </body>
 </html>
