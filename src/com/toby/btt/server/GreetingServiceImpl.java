@@ -36,6 +36,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		// vulnerabilities.
 		input = escapeHtml(input);
 		userAgent = escapeHtml(userAgent);
+		//twitter oauth api "toby941's buzz"
 		OAuthSignpostClient oauthClient = new OAuthSignpostClient(
 				"rdiMpbTlGOFDWBBnY8PIg",
 				"06gDhLk3NsIYYHgLR5pCnVM1Au9i6ql87aMlKOtH9k",

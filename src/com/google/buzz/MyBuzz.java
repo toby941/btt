@@ -220,7 +220,6 @@ public class MyBuzz {
 		request.setRequestProperty("Content-type", "text/plain; charset=GBK");
 		request.setRequestProperty("contentType", "GBK");
 		String xmlResponse = BuzzIO.send(request);
-		System.out.println(xmlResponse);
 		// return BuzzFeedParser.parseFeed(xmlResponse);
 		return BuzzFeedParser
 				.parseFeedEntityWithDom4jOnlyTitleAndSourceURL(xmlResponse);
